@@ -1,7 +1,9 @@
-<html lang="ar" dir="rtl"><head>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جامعة البصرة / كلية طب الاسنان</title>
+    <title>استمارة جمع المعلومات</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -124,24 +126,15 @@
     <script>
         function generateImage() {
             const element = document.querySelector('.form-container');
-function generateImage() {
-    const element = document.querySelector('.form-container');
-    const button = document.querySelector('button');
+            const button = document.querySelector('button');
 
-    // إخفاء الزر قبل الالتقاط
-    button.style.display = 'none';
+            // إخفاء الزر قبل الالتقاط
+            button.style.display = 'none';
 
-    html2canvas(element).then(canvas => {
-        // إعادة إظهار الزر بعد الالتقاط
-        button.style.display = 'block';
-
-        const link = document.createElement('a');
-        link.download = 'student_info.jpg';
-        link.href = canvas.toDataURL('image/jpeg', 1.0);
-        link.click();
-    });
-}
             html2canvas(element).then(canvas => {
+                // إعادة إظهار الزر بعد الالتقاط
+                button.style.display = 'block';
+
                 const link = document.createElement('a');
                 link.download = 'student_info.jpg';
                 link.href = canvas.toDataURL('image/jpeg', 1.0);
@@ -151,6 +144,5 @@ function generateImage() {
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-
-</body></html>
+</body>
+</html>
