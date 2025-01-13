@@ -9,116 +9,118 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <style>
         body {
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f9fc;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            padding: 20px;
             direction: rtl;
-            text-align: right;
         }
         .form-container {
-            width: 210mm;
-            height: 297mm;
-            background: white;
-            padding: 10px;
-            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
-            border-radius: 0px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 3px solid #4682b4;
         }
-        .header {
+        .form-header {
             text-align: center;
             margin-bottom: 20px;
+            color: #005b99;
         }
-        .header h1 {
-            font-size: 24px;
+        .form-header h1 {
             margin: 0;
-            color: #333;
+            font-size: 1.8em;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
+        label {
             font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 85%;
-            padding: 30px;
-            font-size: 14px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .signature {
-            margin-top: 30px;
+            margin-top: 10px;
+            display: block;
             text-align: right;
         }
-        .signature span {
-            display: block;
-            margin-top: 40px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .btn {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
             text-align: center;
+        }
+        .question {
+            border: 1px solid #4682b4;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #e6f7ff;
+        }
+        button {
+            background-color: #4682b4;
+            color: white;
+            padding: 10px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1em;
+            display: block;
+            margin: auto;
         }
-        .btn:hover {
-            background-color: #0056b3;
+        button:hover {
+            background-color: #005b99;
+        }
+        .signature {
+            text-align: right;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+        }
+        .signature p {
+            font-size: 1.2em;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <div class="form-container" id="form">
-        <div class="header">
-            <h1>كلية طب الأسنان - جامعة البصرة</h1>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>كلية طب الاسنان / جامعة البصرة</h1>
         </div>
-        <div class="form-content">
-            <div class="form-group">
+        <form id="studentForm">
+            <div class="question">
                 <label for="fullName">الاسم الثلاثي</label>
-                <input type="text" id="fullName" placeholder="أدخل الاسم الثلاثي" required>
+                <input type="text" id="fullName" name="fullName" placeholder="اكتب الاسم الثلاثي" required>
             </div>
-            <div class="form-group">
-                <label for="jobTitle">العنوان الوظيفي أو اللقب العلمي</label>
-                <input type="text" id="jobTitle" placeholder="أدخل العنوان الوظيفي" required>
+            <div class="question">
+                <label for="degree">الشهادة</label>
+                <select id="degree" name="degree" required>
+                    <option value="" disabled selected>اختر الشهادة</option>
+                    <option value="اعدادية">اعدادية</option>
+                    <option value="بكالوريوس">بكالوريوس</option>
+                                  <option value="دبلوم">دبلوم</option>
+                    <option value="ماجستير">ماجستير</option>
+                    <option value="دكتوراه">دكتوراه</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label for="degree">الشهادة الحاصل عليها</label>
-                <input type="text" id="degree" placeholder="أدخل الشهادة الحاصل عليها" required>
+            <div class="question">
+                <label for="branch">الاختصاص</label>
+                <input type="text" id="branch" name="branch" placeholder="اكتب الاختصاص" required>
             </div>
-            <div class="form-group">
+            <div class="question">
                 <label for="workPlace">مكان العمل</label>
-                <input type="text" id="workPlace" placeholder="أدخل مكان العمل" required>
+                <input type="text" id="workPlace" name="workPlace" placeholder="اكتب مكان العمل" required>
             </div>
-            <div class="form-group">
-                <label for="position">المنصب</label>
-                <input type="text" id="position" placeholder="أدخل المنصب" required>
-            </div>
-            <div class="form-group">
+            <div class="question">
                 <label for="phoneNumber">رقم الهاتف</label>
-                <input type="text" id="phoneNumber" placeholder="أدخل رقم الهاتف" required>
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="اكتب رقم الهاتف" required>
             </div>
-            <div class="form-group">
+            <div class="question">
                 <label for="email">البريد الإلكتروني</label>
-                <input type="email" id="email" placeholder="أدخل البريد الإلكتروني" required>
+                <input type="email" id="email" name="email" placeholder="اكتب البريد الإلكتروني" required>
             </div>
-        </div>
         <div class="signature">
-            <span>التوقيع: ...................................................</span>
+            <p>التوقيع:</p>
         </div>
     </div>
 <div style="text-align: center;">
