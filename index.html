@@ -124,7 +124,23 @@
     <script>
         function generateImage() {
             const element = document.querySelector('.form-container');
+function generateImage() {
+    const element = document.querySelector('.form-container');
+    const button = document.querySelector('button');
 
+    // إخفاء الزر قبل الالتقاط
+    button.style.display = 'none';
+
+    html2canvas(element).then(canvas => {
+        // إعادة إظهار الزر بعد الالتقاط
+        button.style.display = 'block';
+
+        const link = document.createElement('a');
+        link.download = 'student_info.jpg';
+        link.href = canvas.toDataURL('image/jpeg', 1.0);
+        link.click();
+    });
+}
             html2canvas(element).then(canvas => {
                 const link = document.createElement('a');
                 link.download = 'student_info.jpg';
