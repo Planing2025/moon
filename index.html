@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
+<html lang="ar" dir="rtl"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كلية طب الأسنان - جامعة البصرة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <title>جامعة البصرة / كلية طب الاسنان</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -71,7 +66,7 @@
             background-color: #005b99;
         }
         .signature {
-            text-align: right;
+            text-align: center;
             margin-top: 30px;
             padding-top: 20px;
             border-top: 1px solid #ccc;
@@ -84,69 +79,62 @@
 </head>
 <body>
     <div class="form-container">
-        <div class="header">
+        <div class="form-header">
             <h1>كلية طب الاسنان / جامعة البصرة</h1>
         </div>
+        <form id="studentForm">
             <div class="question">
                 <label for="fullName">الاسم الثلاثي</label>
-                <input type="text" id="fullName" name="fullName" placeholder="اكتب الاسم الثلاثي" required>
+                <input type="text" id="fullName" name="fullName" placeholder="اكتب الاسم الثلاثي" required="">
             </div>
             <div class="question">
                 <label for="degree">الشهادة</label>
-                <select id="degree" name="degree" required>
-                    <option value="" disabled selected>اختر الشهادة</option>
+                <select id="degree" name="degree" required="">
+                    <option value="" disabled="" selected="">اختر الشهادة</option>
                     <option value="اعدادية">اعدادية</option>
                     <option value="بكالوريوس">بكالوريوس</option>
-                                  <option value="دبلوم">دبلوم</option>
+                    <option value="دبلوم">دبلوم</option>
                     <option value="ماجستير">ماجستير</option>
                     <option value="دكتوراه">دكتوراه</option>
                 </select>
             </div>
             <div class="question">
                 <label for="branch">الاختصاص</label>
-                <input type="text" id="branch" name="branch" placeholder="اكتب الاختصاص" required>
+                <input type="text" id="branch" name="branch" placeholder="اكتب الاختصاص" required="">
             </div>
             <div class="question">
                 <label for="workPlace">مكان العمل</label>
-                <input type="text" id="workPlace" name="workPlace" placeholder="اكتب مكان العمل" required>
+                <input type="text" id="workPlace" name="workPlace" placeholder="اكتب مكان العمل" required="">
             </div>
             <div class="question">
                 <label for="phoneNumber">رقم الهاتف</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="اكتب رقم الهاتف" required>
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="اكتب رقم الهاتف" required="">
             </div>
             <div class="question">
                 <label for="email">البريد الإلكتروني</label>
-                <input type="email" id="email" name="email" placeholder="اكتب البريد الإلكتروني" required>
+                <input type="email" id="email" name="email" placeholder="اكتب البريد الإلكتروني" required="">
             </div>
+            <button type="button" onclick="generateImage()">تحميل كصورة JPG</button>
+        </form>
         <div class="signature">
-            <span>التوقيع: ...................................................</span>
+            <p>التوقيع:</p>
         </div>
     </div>
-    <div style="text-align: center;">
-        <button class="btn" onclick="downloadAsImage()">تحميل كصورة</button>
-        <button class="btn" onclick="downloadAsPDF()">تحميل كملف PDF</button>
-    </div>
+
     <script>
-        function downloadAsImage() {
-            const form = document.getElementById("form");
-            html2canvas(form).then(canvas => {
-                const link = document.createElement("a");
-                link.download = "form-image.png";
-                link.href = canvas.toDataURL("image/png");
+        function generateImage() {
+            const element = document.querySelector('.form-container');
+
+            html2canvas(element).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'student_info.jpg';
+                link.href = canvas.toDataURL('image/jpeg', 1.0);
                 link.click();
             });
         }
-
-        async function downloadAsPDF() {
-            const { jsPDF } = window.jspdf;
-            const form = document.getElementById("form");
-            html2canvas(form).then(canvas => {
-                const imgData = canvas.toDataURL("image/png");
-                const pdf = new jsPDF("p", "mm", "a4");
-                pdf.addImage(imgData, "PNG", 0, 0, 210, 297);
-                pdf.save("form.pdf");
-            });
-        }
     </script>
-</body>
-</html>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+</body></html>
